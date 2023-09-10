@@ -11,7 +11,7 @@ const {
 
 //middleware
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: 'https://react-music-movies.onrender.com',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
