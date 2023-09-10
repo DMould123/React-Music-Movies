@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const response = await fetch('http://localhost:3000/api/movies')
+        const response = await fetch('https://react-music-movies.onrender.com/api/movies')
         if (response.ok) {
           const data = await response.json()
           setMovies(data)
@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const handleAddMovie = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/movies', {
+      const response = await fetch('https://react-music-movies.onrender.com/api/movies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ const Dashboard = () => {
   const handleDeleteMovie = async (movieId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/movies/${movieId}`,
+        `https://react-music-movies.onrender.com/api/movies/${movieId}`,
         {
           method: 'DELETE'
         }
