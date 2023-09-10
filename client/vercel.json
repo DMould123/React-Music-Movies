@@ -1,3 +1,10 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/albums", "destination": "/" },
+    { "source": "/contact", "destination": "/" },
+    { "source": "/login", "destination": "/" },
+    { "source": "/register", "destination": "/" },
+    { "source": "/dashboard", "destination": "/" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
