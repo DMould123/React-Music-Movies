@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "name": "react-spa",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/images/(.*)", "dest": "/images/$1" },
-    { "src": "/fonts/(.*)", "dest": "/fonts/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "builds": [
+    {
+      "src": "/(.js*)",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
