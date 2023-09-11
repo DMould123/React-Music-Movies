@@ -18,7 +18,7 @@ const Dashboard = () => {
     async function fetchMovies() {
       try {
         const response = await fetch(
-          'https://react-music-movies.onrender.com/api/movies'
+          `https://react-music-movies.onrender.com/api/movies`
         )
         if (response.ok) {
           const data = await response.json()
@@ -45,7 +45,7 @@ const Dashboard = () => {
   const handleAddMovie = async () => {
     try {
       const response = await fetch(
-        'https://react-music-movies.onrender.com/api/movies',
+        `https://react-music-movies.onrender.com/api/movies`,
         {
           method: 'POST',
           headers: {

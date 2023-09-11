@@ -12,7 +12,7 @@ function Home(props) {
 
   useEffect(() => {
     axios
-      .get('https://react-music-movies.onrender.com/api/movies')
+      .get(`https://react-music-movies.onrender.com/api/movies`)
       .then((response) => {
         setMovies(response.data)
         setOriginalMovies(response.data)
