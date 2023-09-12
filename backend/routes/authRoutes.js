@@ -11,11 +11,12 @@ const {
 
 //middleware
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: 'https://musicandmovies.netlify.app',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }
+router.use(cors(corsOptions))
 
 router.use(cors(corsOptions))
 
