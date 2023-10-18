@@ -9,6 +9,7 @@ function Home(props) {
   const [name, setName] = useState('')
   const [movies, setMovies] = useState([])
   const [originalMovies, setOriginalMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     axios
@@ -16,9 +17,11 @@ function Home(props) {
       .then((response) => {
         setMovies(response.data)
         setOriginalMovies(response.data)
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
+        setIsLoading(false)
       })
   }, [])
 
@@ -86,42 +89,45 @@ function Home(props) {
           placeholder="Search"
           style={{ fontWeight: 'bold', color: 'black' }}
         />
-        <Slider {...settings} className="Books_container--inner">
-          {movies && movies.length > 0 ? (
-            movies.map((movie) => (
-              <div className="cardClass" key={movie._id}>
-                <img
-                  src={movie.image}
-                  className="card-image"
-                  style={{ width: 300 }}
-                  alt=""
-                />
-                <div className="card-body">
-                  <h3 className="card-title">{movie.name}</h3>
-                  <p>
-                    <small>
-                      <b>Release Year: </b> {movie.release}
-                    </small>
-                  </p>
-                  <p>
-                    <small>
-                      <b>IMDb Rating: </b> {movie.rating}
-                    </small>
-                  </p>
-                  <p className="card-bio">
-                    <small>
-                      <b>Movie Bio: </b> {movie.bio}
-                    </small>
-                  </p>
+        {isLoading ? ( // Render loading spinner if isLoading is true
+          <div className="loading-spinner">Loading...</div>
+        ) : (
+          <Slider {...settings} className="Books_container--inner">
+            {movies && movies.length > 0 ? (
+              movies.map((movie) => (
+                <div className="cardClass" key={movie._id}>
+                  <img
+                    src={movie.image}
+                    className="card-image"
+                    style={{ width: 300 }}
+                    alt=""
+                  />
+                  <div className="card-body">
+                    <h3 className="card-title">{movie.name}</h3>
+                    <p>
+                      <small>
+                        <b>Release Year: </b> {movie.release}
+                      </small>
+                    </p>
+                    <p>
+                      <small>
+                        <b>IMDb Rating: </b> {movie.rating}
+                      </small>
+                    </p>
+                    <p className="card-bio">
+                      <small>
+                        <b>Movie Bio: </b> {movie.bio}
+                      </small>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <h1>No results found!</h1>
-          )}
-        </Slider>
+              ))
+            ) : (
+              <h1>No results found!</h1>
+            )}
+          </Slider>
+        )}
       </div>
-      {/* <AddMovieForm /> */}
     </>
   )
 }
