@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { FaUser, FaEnvelope, FaComment } from 'react-icons/fa'
+import axios from 'axios'
+
 const Contact = () => {
   const [data, setData] = useState({
     name: '',
@@ -13,9 +15,34 @@ const Contact = () => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission logic here
+
+    // Prepare the data to send to Formspree
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('email', email)
+    formData.append('message', message)
+
+    try {
+      // Send a POST request to Formspree's endpoint
+      const response = await axios.post(
+        'https://formspree.io/f/mjvdqpav',
+        formData
+      )
+
+      // Check if the submission was successful
+      if (response.status === 200) {
+        // Handle a successful submission (e.g., show a success message)
+        console.log('Form submitted successfully.')
+      } else {
+        // Handle an unsuccessful submission (e.g., show an error message)
+        console.error('Form submission failed.')
+      }
+    } catch (error) {
+      // Handle any errors that occurred during the submission
+      console.error('An error occurred:', error)
+    }
   }
 
   return (
@@ -49,13 +76,14 @@ const Contact = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="message"></label>
-          <FaComment /> Message:
+          <label htmlFor="message">
+            <FaComment /> Message:
+          </label>
           <textarea
             id="message"
             name="message"
-            rows={8} // Set the number of rows
-            cols={50} // Set the number of columns
+            rows={8}
+            cols={50}
             value={message}
             onChange={handleChange}
             required

@@ -41,7 +41,6 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      --??
       <form onSubmit={registerUser}>
         <div className="form-group">
           <label htmlFor="name">
